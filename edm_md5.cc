@@ -50,8 +50,8 @@
   1999-05-03 lpd Original version.
  */
 
-#include "md5.h"
-#include <string.h>
+#include "edm_md5.h"
+#include <cstring>
 
 #undef BYTE_ORDER	/* 1 = big-endian, -1 = little-endian, 0 = unknown */
 #ifdef ARCH_IS_BIG_ENDIAN
@@ -126,6 +126,7 @@
 #define T63    0x2ad7d2bb
 #define T64 /* 0xeb86d391 */ (T_MASK ^ 0x14792c6e)
 
+namespace edm_md5 {
 
 static void
 md5_process(md5_state_t *pms, const md5_byte_t *data /*[64]*/)
@@ -378,3 +379,5 @@ md5_finish(md5_state_t *pms, md5_byte_t digest[16])
     for (i = 0; i < 16; ++i)
 	digest[i] = (md5_byte_t)(pms->abcd[i >> 2] >> ((i & 3) << 3));
 }
+
+} // namespace edm_md5
