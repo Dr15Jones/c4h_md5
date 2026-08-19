@@ -49,6 +49,8 @@
   1999-05-03 lpd Original version.
  */
 
+// Moved to edm_md5 namespace and thus C++ only for Code4hep in 2026-08-19
+
 /*
  * This package supports both compile-time and run-time determination of CPU
  * byte order.  If ARCH_IS_BIG_ENDIAN is defined as 0, the code will be
@@ -58,6 +60,8 @@
  * run on either big- or little-endian CPUs, but will run slightly less
  * efficiently on either one than if ARCH_IS_BIG_ENDIAN is defined.
  */
+
+namespace edm_md5 {
 
 typedef unsigned char md5_byte_t; /* 8-bit byte */
 typedef unsigned int md5_word_t; /* 32-bit word */
@@ -69,11 +73,6 @@ typedef struct md5_state_s {
     md5_byte_t buf[64];		/* accumulate block */
 } md5_state_t;
 
-#ifdef __cplusplus
-extern "C" 
-{
-#endif
-
 /* Initialize the algorithm. */
 void md5_init(md5_state_t *pms);
 
@@ -83,8 +82,6 @@ void md5_append(md5_state_t *pms, const md5_byte_t *data, int nbytes);
 /* Finish the message and return the digest. */
 void md5_finish(md5_state_t *pms, md5_byte_t digest[16]);
 
-#ifdef __cplusplus
-}  /* end extern "C" */
-#endif
+} // namespace edm_md5
 
 #endif

@@ -1,11 +1,11 @@
 cmake_minimum_required(VERSION 3.15)
 
-project(c4h_md5 VERSION 1.0.0 LANGUAGES C)
+project(c4h_md5 VERSION 1.0.0 LANGUAGES CXX)
 
 include(GNUInstallDirs)
 include(CMakePackageConfigHelpers)
 
-add_library(c4h_md5 SHARED md5.c)
+add_library(c4h_md5 SHARED edm_md5.cc)
 
 add_library(c4h_md5::c4h_md5 ALIAS c4h_md5)
 
@@ -17,7 +17,7 @@ target_include_directories(c4h_md5
 
 set_target_properties(c4h_md5 PROPERTIES
     OUTPUT_NAME c4h_md5
-    PUBLIC_HEADER md5.h
+    PUBLIC_HEADER edm_md5.h
 )
 
 install(TARGETS c4h_md5
